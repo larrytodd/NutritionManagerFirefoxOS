@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html manifest="offline.appcache">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/lists.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/toolbars.css">
+  </head>
+  <body>
+    <div id="header">
+    </div>
+    <div id="content">
+    </div>
+    <div id="footer">
+    </div>
+    <script type="text/template" id="tpl-recipe-search-header">
+      <section role="region">
+        <header>
+          <menu type="toolbar">
+            <button><span class="icon icon-user">user</span></button>
+          </menu>
+          <form action="#">
+            <input type="text" placeholder="search" id="txtSearch" required="required">
+            <button type="reset">Remove text</button>
+          </form>
+        </header>
+      </section>
+    </script>
+    <script type="text/template" id="tpl-header">
+      <section role="region">
+        <header>
+          <a href="#"><span class="icon icon-back">back</span></a>
+          <h1><%= header %></h1>
+        </header>
+      </section>
+    </script>
+    <script type="text/template" id="tpl-recipe-searched">
+      <section data-type="list">
+        <ul>
+          <% _.each(this.model,function(item){%>
+            <li><p name="pRecipeItem" id='rcp_<%=item.fields.item_id%>' ><%= item.fields.item_name %></p></li>
+          <% }); %>
+        </ul>
+      </section>
+    </script>
+    <script type="text/template" id="tpl-recipe-detail">
+      <div role="toolbar">
+        <ul>
+          <li>
+            <button class="pack-icon-mark">Mark</button>
+          </li>
+          <li>
+            <button class="pack-icon-send">Send</button>
+          </li>
+          <li>
+            <button class="pack-icon-share">Share</button>
+          </li>
+        </ul>
+      </div>
+    </script>
+    <!-- Using require.js, a module system for javascript, include the
+         js files. This loads "main.js", which in turn can load other
+         files, all handled by require.js:
+         http://requirejs.org/docs/api.html#jsfiles -->
+    <script type="text/javascript"
+            data-main="js/init.js"
+            src="js/lib/require.js"></script>
+  </body>
+</html>

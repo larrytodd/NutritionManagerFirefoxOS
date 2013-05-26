@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "name": "Nutrition Goals",
+  "description": "This app will let you search recipes and set nutrition goals",
+  "launch_path": "/index.html",
+  "icons": {
+    "16": "/img/icons/mortar-16.png",
+    "48": "/img/icons/mortar-48.png",
+    "128": "/img/icons/mortar-128.png"
+  },
+  "developer": {
+    "name": "Larry Wishnick",
+    "url": "http://larrywishnick.com"
+  },
+  "appcache_path": "/cache.manifest",
+  "default_locale": "en",
+  "permissions" :{
+    "contacts" :{
+      "description" : "required to access emails to send food info to",
+      "access" : "readonly"
+    },
+    "systemXHR":{}
+  },
+  "activities":{
+    "new" :{
+      "type":"email"
+    }
+  },
+  "type":"privileged"
+}
