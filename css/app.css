@@ -6,4 +6,17 @@
 @import "install-button.css";
 
 /* Your styles here */
-
+li[name="pRecipeItem"]>p{
+	font-size: 14px !important;
+}
+ h1.h1Header{
+	font-size: 14px !important;
+}
+div [name="filterTabs"]
+{
+	display: none;
+}
+[role="tablist"]>[role="tab"] > a
+{
+	font-size: 10px !important;
+}

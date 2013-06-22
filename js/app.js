@@ -51,8 +51,7 @@ define(function(require) {
         searchRecipes:function(){
             var recipeCollection = new RecipeCollection();
             if($('#txtSearch').val().trim().length>0){
-               var _api = api;
-               _api.getNutrtionixSearch($('#txtSearch').val());
+               api.getNutrtionixSearch($('#txtSearch').val());
                 document.addEventListener("datareturned", function(e){
                     var data = e.detail.dataReturned.hits;
                     this.searchedView = new SearchedView({model: data});
@@ -87,10 +86,33 @@ define(function(require) {
             return this;
         },
         events:{
-            "click .pack-icon-send" : "mailContact"
+            "click .pack-icon-send" : "mailContact",
+            "click [role='tab'] > a" : "filterDetail"
         },
         mailContact: function(event){
-          //holder  
+          api.getContacts();
+          document.addEventListener("datareturned", function(e){
+            alert(e.givenName[0]);
+            return false;
+          });
+        },
+        filterDetail: function(event){
+            $("[name='filterTabs']").css('display','none');
+            $("[role='tab']").attr('aria-selected','false');
+            switch(event.target.id)
+            {
+                case 'hrefFilter2-1':
+                    document.getElementById('divFiler2-1').style.display='inline';
+                    break;
+                case 'hrefFilter2-2':
+                    document.getElementById('divFiler2-2').style.display='inline';
+                    break;
+                case 'hrefFilter2-3':
+                    document.getElementById('divFiler2-3').style.display='inline';
+                    break;
+                default:
+                    break;
+            }
         }
     });
     window.HeaderView = Backbone.View.extend({
@@ -110,9 +132,8 @@ define(function(require) {
             $('#header').html(this.initialView.render().el);
         },
         detail:function(id){
-            var recipeIdToPass = id.replace('rcp_','');
-            var _api = api;
-            _api.getNutritionixDetails(recipeIdToPass);
+            var recipeIdToPass = id.replace('rcp_','').replace('rcp2_','');
+            api.getNutritionixDetails(recipeIdToPass);
             document.addEventListener('datareturned',function(e){
                 var data = e.detail.dataReturned;
                 this.header= new Header({header: data.item_name});

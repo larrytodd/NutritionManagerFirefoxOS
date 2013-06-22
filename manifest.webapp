@@ -17,7 +17,7 @@
   "permissions" :{
     "contacts" :{
       "description" : "required to access emails to send food info to",
-      "access" : "readonly"
+      "access" : "readcreate"
     },
     "systemXHR":{}
   },

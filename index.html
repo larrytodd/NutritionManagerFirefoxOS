@@ -6,10 +6,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet" type="text/css" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/lists.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/toolbars.css">
+    <link rel="stylesheet" type="text/css" href="css/tabs.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
   </head>
   <body>
     <div id="header">
@@ -35,7 +36,7 @@
       <section role="region">
         <header>
           <a href="#"><span class="icon icon-back">back</span></a>
-          <h1><%= header %></h1>
+          <h1 class="h1Header"><%= header %></h1>
         </header>
       </section>
     </script>
@@ -43,12 +44,54 @@
       <section data-type="list">
         <ul>
           <% _.each(this.model,function(item){%>
-            <li><p name="pRecipeItem" id='rcp_<%=item.fields.item_id%>' ><%= item.fields.item_name %></p></li>
+              <li name="pRecipeItem" >
+                <p id='rcp_<%=item.fields.item_id%>'>
+                  <%=item.fields.brand_name%>
+                </p>
+                <p id='rcp2_<%=item.fields.item_id%>'>
+                  <%= item.fields.item_name %>
+                </p>
+              </li>
           <% }); %>
         </ul>
       </section>
     </script>
     <script type="text/template" id="tpl-recipe-detail">
+      <ul role="tablist" data-type="filter" data-items="3">
+        <li id="filter2-1" role="tab" aria-selected="true">
+          <a href="#filter2-1" id="hrefFilter2-1">Nutrition</a>
+        </li>
+        <li id="filter2-2" role="tab">
+          <a href="#filter2-2" id="hrefFilter2-2" >Ingredients</a>
+        </li>
+        <li id="filter2-3" role="tab">
+          <a href="#filter2-3" id="hrefFilter2-3">Action</a>
+        </li>
+      </ul>
+      <div name="filterTabs" style="display:inline;" id="divFiler2-1">
+        <section data-type="list">
+          <header><%=item_description%></header>
+          <ul>
+            <li>
+              <strong>Calories</strong>
+              <%=nf_calories%>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div name= "filterTabs" id="divFilter2-2">
+        <section data-type="list">
+          <header><%=item_description%></header>
+          <ul>
+            <li>
+              <%=nf_ingredient_statement%>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div name="filterTabs" id="divFilter2-3">
+        Three
+      </div>
       <div role="toolbar">
         <ul>
           <li>
@@ -59,6 +102,9 @@
           </li>
           <li>
             <button class="pack-icon-share">Share</button>
+          </li>
+          <li>
+            <button></button>
           </li>
         </ul>
       </div>
